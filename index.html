@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Educacional de Odds</title>
+    <style>
+        /* Estilos básicos para a tabela */
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #007bff; color: white; text-transform: uppercase; }
+        tr:hover { background-color: #f1f1f1; }
+        .odd-05 { background-color: #e6ffe6; } /* Verde claro para 0.5 */
+        .odd-15 { background-color: #ffe6e6; } /* Vermelho claro para 1.5 */
+    </style>
+</head>
+<body>
+    <h1>⚽ Scanner Educacional de Futebol (Mock Data)</h1>
+    <p>Dados filtrados por jogos a começar em no máximo 24 horas e ordenados pela maior Odd.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mercado</th>
+                <th>Horário BRT</th>
+                <th>Times</th>
+                <th>Campeonato</th>
+                <th>Odd</th>
+            </tr>
+        </thead>
+        <tbody id="resultsTableBody">
+            <tr><td colspan="5">Carregando dados...</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchAndDisplayData() {
+            const tbody = document.getElementById('resultsTableBody');
+            tbody.innerHTML = '<tr><td colspan="5">Buscando dados no servidor...</td></tr>';
+            
+            try {
+                // Chama a rota do nosso servidor Python (Requisito 4: Link aberto)
+                const response = await fetch('/scan-data'); 
+                const data = await response.json();
+
+                tbody.innerHTML = ''; // Limpa o "Carregando"
+
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5">Nenhum jogo encontrado que atenda aos critérios.</td></tr>';
+                    return;
+                }
+
+                let currentType = '';
+                
+                data.forEach(item => {
+                    // Adiciona um separador visual entre os mercados 0.5 e 1.5
+                    if (item.type !== currentType) {
+                        const headerRow = document.createElement('tr');
+                        headerRow.innerHTML = `<td colspan="5" style="background-color: #f0f8ff; font-weight: bold; text-align: center;">--- Mercado ${item.type} GOLS ---</td>`;
+                        tbody.appendChild(headerRow);
+                        currentType = item.type;
+                    }
+                    
+                    const row = document.createElement('tr');
+                    // Define a cor de fundo com base no mercado
+                    row.className = item.type === '0.5' ? 'odd-05' : 'odd-15'; 
+                    
+                    // Requisito 7: Ordem na linha (horário, times, campeonato, odd)
+                    row.innerHTML = `
+                        <td>${item.type}</td>
+                        <td>${item.horario}</td>
+                        <td>${item.times}</td>
+                        <td>${item.campeonato}</td>
+                        <td><strong>${item.odds_05 || item.odds_15}</strong></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                tbody.innerHTML = '<tr><td colspan="5" style="color: red;">Erro ao conectar com o servidor.</td></tr>';
+            }
+        }
+
+        fetchAndDisplayData();
+    </script>
+</body>
+</html>
