@@ -1,2 +1,0 @@
-# Arquivo: requirements.txt
-Flask
