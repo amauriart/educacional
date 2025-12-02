@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Betano - Over Gols Mundial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
+    <meta name="description" content="Scanner completo de odds Over/Under da Betano para todos os campeonatos de futebol">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Scanner Betano - Over Gols</h1>
+            <p>Scanner completo de odds Over/Under para todos os campeonatos de futebol da Betano</p>
+            <div class="features">
+                <div class="feature-badge">⚽ Todos os campeonatos</div>
+                <div class="feature-badge">🏠 Apenas Betano</div>
+                <div class="feature-badge">⏰ Próximas 48 horas</div>
+                <div class="feature-badge">📊 Odds reais em tempo real</div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <button id="btnAtualizar">
+                <span>🔄</span>
+                <span>Varredura Completa</span>
+            </button>
+            <span id="ultimaAtualizacao">Scanner pronto para buscar todos os jogos</span>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10px;">Varrendo Betano mundial...</p>
+            <p style="color: #64748b;">Buscando todos os jogos de futebol nas próximas 48 horas</p>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 15px;">Isso pode levar alguns segundos</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="over05">
+                Over 0.5 Gols
+                <small>Odds ≥ 1.10 • Prioridade: Maiores odds</small>
+            </button>
+            <button class="tab-button" data-tab="over15">
+                Over 1.5 Gols
+                <small>Odds ≥ 1.50 • Prioridade: Maiores odds</small>
+            </button>
+        </div>
+
+        <div class="content">
+            <div id="over05" class="tab-content active">
+                <h2>⚽ Over 0.5 Gols - Betano Mundial</h2>
+                <div class="jogos-container" id="jogosOver05">
+                    <div class="vazio">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">🔍</div>
+                        <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;">Scanner Betano</p>
+                        <p>Clique em "Varredura Completa" para buscar todos os jogos</p>
+                        <p style="margin-top: 20px; color: #64748b;">
+                            Buscando em: Premier League, La Liga, Serie A, Bundesliga, Ligue 1,<br>
+                            Brasileirão, Champions League, Libertadores e todos os campeonatos
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="over15" class="tab-content">
+                <h2>⚽⚽ Over 1.5 Gols - Betano Mundial</h2>
+                <div class="jogos-container" id="jogosOver15">
+                    <div class="vazio">
+                        <div style="font-size: 3rem; margin-bottom: 20px;">🎯</div>
+                        <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;">Scanner Betano</p>
+                        <p>Clique em "Varredura Completa" para buscar todos os jogos</p>
+                        <p style="margin-top: 20px; color: #64748b;">
+                            Critérios: Betano • Próximas 48h • Odds ≥ 1.50
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Scanner Betano Completo - Varredura mundial de odds Over/Under</p>
+            <p>Dados via The Odds API • Atualizações manuais via botão</p>
+            <p class="disclaimer">
+                ⚠️ Projeto pessoal/educacional. Use por sua conta e risco.<br>
+                As odds podem mudar a qualquer momento. Verifique sempre no site oficial.
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
