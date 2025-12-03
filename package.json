@@ -1,0 +1,21 @@
+{
+  "name": "bet365-scanner",
+  "version": "1.0.0",
+  "description": "Scanner de apostas Bet365 para Over de Gols",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["bet365", "scanner", "soccer", "odds"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
