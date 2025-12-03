@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Scanner Betano</title>
+<style>
+body{font-family:Arial;background:#f7fafc;padding:18px}
+h1{color:#0f1720}
+button{background:#06b6d4;border:none;padding:10px 14px;border-radius:6px;color:#001}
+.table{width:100%;border-collapse:collapse;margin-top:16px}
+th,td{padding:10px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#0284c7;color:white}
+.green{background:#e6ffed}
+.red{background:#fff0f0}
+.section{background:#0b1220;color:#fff;padding:6px;border-radius:4px;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>Scanner Betano</h1>
+<p>Filtrar: Futebol • Over 0.5 ≥ 1.10 • Over 1.5 ≥ 1.50 • Próximas 24h</p>
+<button id="btn">🔄 Atualizar</button>
+<div id="status"></div>
+<div id="out"></div>
+
+<script>
+document.getElementById('btn').addEventListener('click', async ()=>{
+  const st = document.getElementById('status'); const out = document.getElementById('out');
+  st.innerText = 'Buscando...'; out.innerHTML = '';
+  try{
+    const r = await fetch('/api/jogos');
+    if(!r.ok) throw new Error('Erro servidor ' + r.status);
+    const js = await r.json();
+    st.innerText = `Encontrados ${js.over05.length} over0.5 e ${js.over15.length} over1.5`;
+    // render
+    let html = '<div class="section">--- Mercado 0.5 Gols ---</div>';
+    if(js.over05.length===0) html += '<p>Nenhum jogo encontrado</p>'; else {
+      html += '<table class="table"><tr><th>Início</th><th>Jogo</th><th>Campeonato</th><th>Odd</th></tr>';
+      js.over05.forEach(j=>{
+        html += `<tr class="green"><td>${j.hora}</td><td>${j.times}</td><td>${j.campeonato}</td><td><b>${j.odd.toFixed(2)}</b></td></tr>`;
+      });
+      html += '</table>';
+    }
+    html += '<div class="section">--- Mercado 1.5 Gols ---</div>';
+    if(js.over15.length===0) html += '<p>Nenhum jogo encontrado</p>'; else {
+      html += '<table class="table"><tr><th>Início</th><th>Jogo</th><th>Campeonato</th><th>Odd</th></tr>';
+      js.over15.forEach(j=>{
+        html += `<tr class="red"><td>${j.hora}</td><td>${j.times}</td><td>${j.campeonato}</td><td><b>${j.odd.toFixed(2)}</b></td></tr>`;
+      });
+      html += '</table>';
+    }
+    out.innerHTML = html;
+  }catch(err){
+    st.innerText = 'Erro: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>
