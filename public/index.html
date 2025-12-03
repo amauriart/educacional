@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Bet365 - Over de Gols</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Scanner Bet365 - Over de Gols</h1>
+            <p class="subtitle">Jogos de futebol nas próximas 24 horas</p>
+        </header>
+
+        <div class="controls">
+            <button id="scanBtn" class="btn-primary">
+                <span id="btnText">🔍 Iniciar Scan</span>
+                <span id="btnLoader" class="loader" style="display: none;"></span>
+            </button>
+            <div id="lastUpdate" class="last-update"></div>
+        </div>
+
+        <div id="errorMsg" class="error-msg" style="display: none;"></div>
+
+        <!-- Over 0.5 -->
+        <section class="results-section">
+            <h2>⚽ Over 0.5 Gols (Odds ≥ 1.10)</h2>
+            <div id="over05Count" class="count-badge">0 jogos encontrados</div>
+            <div class="table-container">
+                <table id="table05">
+                    <thead>
+                        <tr>
+                            <th>Horário</th>
+                            <th>Times</th>
+                            <th>Campeonato</th>
+                            <th>Odds</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody05">
+                        <tr>
+                            <td colspan="4" class="no-data">Clique em "Iniciar Scan" para buscar jogos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Over 1.5 -->
+        <section class="results-section">
+            <h2>⚽⚽ Over 1.5 Gols (Odds ≥ 1.50)</h2>
+            <div id="over15Count" class="count-badge">0 jogos encontrados</div>
+            <div class="table-container">
+                <table id="table15">
+                    <thead>
+                        <tr>
+                            <th>Horário</th>
+                            <th>Times</th>
+                            <th>Campeonato</th>
+                            <th>Odds</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody15">
+                        <tr>
+                            <td colspan="4" class="no-data">Clique em "Iniciar Scan" para buscar jogos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <p>Dados fornecidos por SoccersAPI | Casa de Apostas: Bet365</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
