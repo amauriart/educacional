@@ -1,7 +1,0 @@
-{
-  "user": "0x3YU",
-  "token": "UVZnFqmGWH",
-  "api_url_leagues": "https://api.soccersapi.com/v2.2/leagues/",
-  "api_url_fixtures": "https://api.soccersapi.com/v2.2/fixtures/",
-  "api_url_odds": "https://api.soccersapi.com/v2.2/odds/"
-}
